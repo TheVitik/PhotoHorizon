@@ -1,0 +1,379 @@
+// Користувачі
+CREATE (:User {Id: '49432202-c001-4ed9-8390-5479f6931285', Name: 'Anna Ivanko', AvatarPath: 'avatars/anna.png', PasswordHash: 'a1b2c3d4e5', Email: 'anna.ivanko@gmail.com', RegisteredAt: '2025-04-11T10:15:00', Bio: "Люблю подорожувати та фотографувати природу."});
+CREATE (:User {Id: '43f3e990-af93-431c-bddd-7ca23406894f', Name: 'Dmytro Koval', AvatarPath: 'avatars/dmytro.png', PasswordHash: 'f6g7h8i9j0', Email: 'd.koval@ukr.net', RegisteredAt: '2025-04-12T08:40:00', Bio: "Фотограф-документаліст із Києва."});
+CREATE (:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d', Name: 'Olena Shevchenko', AvatarPath: 'avatars/olena.png', PasswordHash: 'k1l2m3n4o5', Email: 'olena.sh@gmail.com', RegisteredAt: '2025-04-13T13:27:00', Bio: "Знімаю архітектуру та міське життя."});
+CREATE (:User {Id: 'b596d8f6-68ba-49e5-9d6f-e28fbc8781ce', Name: 'Марія Коваль', AvatarPath: 'avatars/avatar4.jpg', PasswordHash: 'hash4', Email: 'm.koval@example.com', RegisteredAt: '2025-04-14T10:15:00', Bio: 'Люблю подорожувати та знімати природу.'});
+CREATE (:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e', Name: 'Олег Іваненко', AvatarPath: 'avatars/avatar5.jpg', PasswordHash: 'hash5', Email: 'o.ivanenko@example.com', RegisteredAt: '2025-04-14T11:20:00', Bio: 'Фотограф з Одеси. Знімаю портрети.'});
+CREATE (:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7', Name: 'Ірина Синюк', AvatarPath: 'avatars/avatar6.jpg', PasswordHash: 'hash6', Email: 'iryna.syn@example.com', RegisteredAt: '2025-04-15T09:00:00', Bio: 'Захоплююсь архітектурною фотографією.'});
+CREATE (:User {Id: 'e7639043-e9eb-441f-8704-7f3f3d294734', Name: 'Денис Бойко', AvatarPath: 'avatars/avatar7.jpg', PasswordHash: 'hash7', Email: 'd.boyko@example.com', RegisteredAt: '2025-04-15T10:45:00', Bio: 'Редактор фото. Працюю в Photoshop.'});
+CREATE (:User {Id: '1b09a32e-be2b-4c4a-b167-f7914879ea6d', Name: 'Анна Вернигора', AvatarPath: 'avatars/avatar8.jpg', PasswordHash: 'hash8', Email: 'anna.ver@example.com', RegisteredAt: '2025-04-15T12:30:00', Bio: 'Люблю ловити моменти на вулицях міста.'});
+
+
+// Коментарі
+CREATE (:Comment {Id: '1e9becee-b93e-4d16-8c6e-a8675cc0e620', Text: 'Неймовірне фото! Хочу туди поїхати.'});
+CREATE (:Comment {Id: '684e32e6-0244-4374-a967-2af6a132dfc4', Text: 'Світло дуже гарно вписується в композицію.'});
+CREATE (:Comment {Id: 'eb28f466-64d8-4bd5-acc2-c525267b1f7c', Text: 'Чудова робота! А де це знято?'});
+CREATE (:Comment {Id: '3fab5ab7-c4c5-4972-b7d3-ee5b14a76264', Text: 'Вау, дуже гарна світлина!'});
+CREATE (:Comment {Id: 'a95e8cfb-5ccf-4fe1-ae69-b5e6ce8b2fbd', Text: 'Обожнюю це місце, дякую за фото!'});
+CREATE (:Comment {Id: '298d7d9f-5052-4e89-80fe-5185f0d360e4', Text: 'Крута композиція і кольори.'});
+CREATE (:Comment {Id: '9733902c-255a-4afc-b88d-ad1bf4742e36', Text: 'Хочу туди поїхати!'});
+CREATE (:Comment {Id: 'ea4530bb-92ba-465a-96e6-04f4c45aab16', Text: 'Неймовірна атмосфера.'});
+CREATE (:Comment {Id: '42a5f28a-fb9f-435b-a4f8-9bcdc38888d1', Text: 'Це фото надихнуло мене на нову подорож.'});
+
+// Фотографії
+CREATE (:Photo {Id: '873320a8-8dec-48f9-83e8-d5ac2921badf', Path: 'photos/anna_mountains.jpg', Description: 'Ранок у Карпатах', CreationDate: '2025-04-13T06:30:00', LocationLatitude: 48.154, LocationLongitude: 24.441, LikesCount: 23});
+CREATE (:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45', Path: 'photos/dmytro_city.jpg', Description: 'Нічна Одеса', CreationDate: '2025-04-13T21:45:00', LocationLatitude: 46.4825, LocationLongitude: 30.7233, LikesCount: 41});
+CREATE (:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046', Path: 'photos/olena_arch.jpg', Description: 'Старовинні вулички Львова', CreationDate: '2025-04-13T11:15:00', LocationLatitude: 49.8397, LocationLongitude: 24.0297, LikesCount: 18});
+// Нові фотографії
+CREATE (:Photo {
+  Id: '3845df6f-6534-4972-8dd6-93b8e2781881',
+  Path: 'maria_nature.jpg',
+  Description: 'Ранковий туман у горах',
+  CreationDate: '2025-04-14T07:00:00',
+  LocationLatitude: 48.161,
+  LocationLongitude: 24.503,
+  LikesCount: 32
+});
+
+CREATE (:Photo {
+  Id: '57ffb019-09e9-4dd5-8d0a-6ebaf52ee1c0',
+  Path: 'olegs_portrait.jpg',
+  Description: 'Чорно-білий портрет літньої жінки',
+  CreationDate: '2025-04-14T13:45:00',
+  LocationLatitude: 46.482,
+  LocationLongitude: 30.723,
+  LikesCount: 20
+});
+
+CREATE (:Photo {
+  Id: '4d577f62-ac67-4b2f-9703-396d7dd75713',
+  Path: 'iryna_arch.jpg',
+  Description: 'Контрасти старої та нової архітектури',
+  CreationDate: '2025-04-15T10:20:00',
+  LocationLatitude: 49.839,
+  LocationLongitude: 24.029,
+  LikesCount: 18
+});
+
+CREATE (:Photo {
+  Id: '2cdeeaa0-9c26-4536-a3d9-4de141089c56',
+  Path: 'denis_edit.jpg',
+  Description: 'Міський пейзаж на заході сонця (ретуш)',
+  CreationDate: '2025-04-15T19:05:00',
+  LocationLatitude: 50.450,
+  LocationLongitude: 30.523,
+  LikesCount: 45
+});
+
+CREATE (:Photo {
+  Id: '5b735390-dc02-4846-bc57-e0197cbd5046',
+  Path: 'anna_street.jpg',
+  Description: 'Дощовий Львів у відображенні калюжі',
+  CreationDate: '2025-04-15T16:30:00',
+  LocationLatitude: 49.839,
+  LocationLongitude: 24.029,
+  LikesCount: 27
+});
+
+CREATE (:Photo {
+  Id: 'ec26935f-dcb4-4725-819f-f6ef9fc14033',
+  Path: 'mountain_morning.jpg',
+  Description: 'Гори Карпати, світанок над хмарами',
+  CreationDate: '2025-04-16T06:00:00',
+  LocationLatitude: 48.265,
+  LocationLongitude: 24.412,
+  LikesCount: 51
+});
+
+// Конкурси
+CREATE (:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230', Name:'Весняне натхнення', PhotoPath:'banners/spring.jpg', Description:'Надішли фото, що передає атмосферу весни!', StartDateTime: '2025-04-13T00:00:00', EndDateTime: '2025-04-21T23:59:00'});
+CREATE (:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17', Name:'Нічне місто', PhotoPath:'banners/nightcity.jpg', Description:'Захопи чарівність міста після заходу сонця.', StartDateTime: '2025-04-14T00:00:00', EndDateTime: '2025-04-22T23:59:00'});
+CREATE (:Contest {Id: 'cdd4f1f9-33cf-4b49-909f-318aab82e189', Name:'Моя Україна', PhotoPath:'banners/ukraine.jpg', Description:'Покажи красу своєї батьківщини.', StartDateTime: '2025-04-15T00:00:00', EndDateTime: '2025-04-23T23:59:00'});
+
+// Категорії
+CREATE (:Category {Id: '8892399a-acb3-4675-8333-7b78fc3ee8aa', Name: 'Пейзажі'});
+CREATE (:Category {Id: 'aeba67ea-3771-4a1e-899a-60395c41c919', Name: 'Міський стиль'});
+CREATE (:Category {Id: 'cc3e051b-dcf7-49b0-88b0-b8c7a9cc2f8f', Name: 'Портрет'});
+CREATE (:Category {Id: '72514169-8ef9-4b0e-92c4-d49bc63b5eff', Name: 'Природа'});
+CREATE (:Category {Id: 'f7cf672a-9199-4c9d-892c-466dcd717f0c', Name: 'Абстракція'});
+
+//Нагороди
+CREATE (:Award {Id:'e5d56202-2517-4a0e-b21c-1f3967286cec', Name:'Цветіння весни', icon:'icos/SpingBloom.png', description:'За найкраще фото на змаганні Весняне натхнення'});
+CREATE (:Award {Id:'5ea28a52-e793-4e06-9be4-4002585f0e34', Name:'Під покровом темряви', icon:'icos/Night.png', description:'За найкраще фото на змаганні нічне місто'});
+CREATE (:Award {Id:'94d79123-6ccb-4857-80c1-41524e8a66ca', Name:'Моя Україна - золото', icon:'icos/UkraineGold.png', description:'За найкраще фото на змаганні Моя Україна'});
+CREATE (:Award {Id:'b2193064-1d5b-4e41-b83b-cd6f9153ad41', Name:'Моя Україна - срібло', icon:'icos/UkraineSilver.png', description:'За найкраще фото на змаганні Моя Україна'});
+
+
+
+// Країна
+CREATE (:Country {Id: '731733d8-ceb3-4f6e-99d5-82e442a37ca0', Name: 'Україна'});
+
+// Області
+CREATE (:Region {Id: 'aa63e520-e103-4aae-8967-b26919965f6e', Name: 'Львівська область'});
+CREATE (:Region {Id: '9999fcd5-596a-4f33-b971-c44c9cde6a5b', Name: 'Одеська область'});
+CREATE (:Region {Id: '989d0eca-666a-4de3-bbbc-e13a1f8d5f2a', Name: 'Івано-Франківська область'});
+
+// Міста з координатами
+CREATE (:City {Id: '1c56018d-6b8e-45e8-9442-d7c3822376af', Name: 'Львів', Latitude: 49.8397, Longitude: 24.0297});
+CREATE (:City {Id: '4b9af7e9-de41-4663-b9a2-94d167148583', Name: 'Одеса', Latitude: 46.4825, Longitude: 30.7233});
+CREATE (:City {Id: '32520f86-7cc3-49b2-9dfe-de1e7815c474', Name: 'Івано-Франківськ', Latitude: 48.9226, Longitude: 24.7111});
+CREATE (:City {Id: 'ca678c9e-d478-4d6e-a07d-05fba58e24b2', Name: 'Яремче', Latitude: 48.4481, Longitude: 24.5524});
+
+MATCH (c:Country {Id: '731733d8-ceb3-4f6e-99d5-82e442a37ca0'}), (r1:Region {Id: 'aa63e520-e103-4aae-8967-b26919965f6e'})
+CREATE (r1)-[:IN_COUNTRY]->(c);
+MATCH (c:Country {Id: '731733d8-ceb3-4f6e-99d5-82e442a37ca0'}), (r1:Region {Id: '9999fcd5-596a-4f33-b971-c44c9cde6a5b'})
+CREATE (r1)-[:IN_COUNTRY]->(c);
+MATCH (c:Country {Id: '731733d8-ceb3-4f6e-99d5-82e442a37ca0'}), (r1:Region {Id: '989d0eca-666a-4de3-bbbc-e13a1f8d5f2a'})
+CREATE (r1)-[:IN_COUNTRY]->(c);
+
+MATCH (c1:City {Id: '1c56018d-6b8e-45e8-9442-d7c3822376af'}), (r1:Region {Id: 'aa63e520-e103-4aae-8967-b26919965f6e'})
+CREATE (c1)-[:IN_REGION]->(r1);
+
+MATCH (c2:City {Id: '4b9af7e9-de41-4663-b9a2-94d167148583'}), (r2:Region {Id: '9999fcd5-596a-4f33-b971-c44c9cde6a5b'})
+CREATE (c2)-[:IN_REGION]->(r2);
+
+MATCH (c3:City {Id: '32520f86-7cc3-49b2-9dfe-de1e7815c474'}), (r3:Region {Id: '989d0eca-666a-4de3-bbbc-e13a1f8d5f2a'})
+CREATE (c3)-[:IN_REGION]->(r3);
+
+MATCH (c4:City {Id: 'ca678c9e-d478-4d6e-a07d-05fba58e24b2'}), (r3:Region {Id: '989d0eca-666a-4de3-bbbc-e13a1f8d5f2a'})
+CREATE (c4)-[:IN_REGION]->(r3);
+
+MATCH (u:User {Id: '49432202-c001-4ed9-8390-5479f6931285'}), (p:City {Id: '1c56018d-6b8e-45e8-9442-d7c3822376af'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: '43f3e990-af93-431c-bddd-7ca23406894f'}), (p:City {Id: '4b9af7e9-de41-4663-b9a2-94d167148583'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d'}), (p:City {Id: '4b9af7e9-de41-4663-b9a2-94d167148583'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: 'b596d8f6-68ba-49e5-9d6f-e28fbc8781ce'}), (p:City {Id: '32520f86-7cc3-49b2-9dfe-de1e7815c474'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e'}), (p:City {Id: '32520f86-7cc3-49b2-9dfe-de1e7815c474'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7'}), (p:City {Id: '32520f86-7cc3-49b2-9dfe-de1e7815c474'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: 'e7639043-e9eb-441f-8704-7f3f3d294734'}), (p:City {Id: 'ca678c9e-d478-4d6e-a07d-05fba58e24b2'})
+CREATE (u)-[:LIVE]->(p);
+MATCH (u:User {Id: '1b09a32e-be2b-4c4a-b167-f7914879ea6d'}), (p:City {Id: 'ca678c9e-d478-4d6e-a07d-05fba58e24b2'})
+CREATE (u)-[:LIVE]->(p);
+
+
+
+// Контактні дані для User1
+CREATE (:Contact {Id: '510b5849-b8fb-4d28-aecf-5a67c0b74720', Type: 'Telegram', Handle: '@user1_telegram'});
+CREATE (:Contact {Id: '3ab305cd-4fe7-4619-9c6a-6b630a4c8598', Type: 'Instagram', Handle: '@user1_insta'});
+MATCH (u:User {Id: '49432202-c001-4ed9-8390-5479f6931285'}), (c1:Contact {Id: '510b5849-b8fb-4d28-aecf-5a67c0b74720'}), (c2:Contact {Id: '3ab305cd-4fe7-4619-9c6a-6b630a4c8598'})
+CREATE (u)-[:HAS_CONTACT]->(c1)
+CREATE (u)-[:HAS_CONTACT]->(c2);
+
+// Контактні дані для User2
+CREATE (:Contact {Id: 'e4b010fb-3260-4cc1-b66a-47ae2b59c232', Type: 'WhatsApp', Handle: '+380931112233'});
+MATCH (u:User {Id: '43f3e990-af93-431c-bddd-7ca23406894f'}), (c:Contact {Id: 'e4b010fb-3260-4cc1-b66a-47ae2b59c232'})
+CREATE (u)-[:HAS_CONTACT]->(c);
+
+// Контактні дані для User3
+CREATE (:Contact {Id: 'b1c4792e-3bff-4262-9310-4b13cc988881', Type: 'Telegram', Handle: '@user3_telegram'});
+CREATE (:Contact {Id: 'e62c3d39-ea56-43d9-ae0b-eea9eb695312', Type: 'WhatsApp', Handle: '+380631234567'});
+MATCH (u:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d'}), (c1:Contact {Id: 'b1c4792e-3bff-4262-9310-4b13cc988881'}), (c2:Contact {Id: 'e62c3d39-ea56-43d9-ae0b-eea9eb695312'})
+CREATE (u)-[:HAS_CONTACT]->(c1)
+CREATE (u)-[:HAS_CONTACT]->(c2);
+
+// User4 - Telegram, Instagram
+CREATE (:Contact {Id: '883c0f0b-6938-4ad3-bbb0-7e2a2e11cc80', Type: 'Telegram', Handle: '@m_koval'});
+CREATE (:Contact {Id: '99441329-fdbf-46cd-b1b8-61e5d738c4cd', Type: 'Instagram', Handle: '@maria.photos'});
+MATCH (u:User {Id: 'b596d8f6-68ba-49e5-9d6f-e28fbc8781ce'}), (c1:Contact {Id: '883c0f0b-6938-4ad3-bbb0-7e2a2e11cc80'}), (c2:Contact {Id: '99441329-fdbf-46cd-b1b8-61e5d738c4cd'})
+CREATE (u)-[:HAS_CONTACT]->(c1)
+CREATE (u)-[:HAS_CONTACT]->(c2);
+
+// User5 - WhatsApp
+CREATE (:Contact {Id: 'b44b141a-ffd8-4199-bc8a-6d11c3a4bcf1', Type: 'WhatsApp', Handle: '+380987654321'});
+MATCH (u:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e'}), (c:Contact {Id: 'b44b141a-ffd8-4199-bc8a-6d11c3a4bcf1'})
+CREATE (u)-[:HAS_CONTACT]->(c);
+
+// User6 - Instagram
+CREATE (:Contact {Id: '463cb640-7588-4023-aaff-a61c99e27806', Type: 'Instagram', Handle: '@iryna.arch'});
+MATCH (u:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7'}), (c:Contact {Id: '463cb640-7588-4023-aaff-a61c99e27806'})
+CREATE (u)-[:HAS_CONTACT]->(c);
+
+// User7 - Telegram, WhatsApp
+CREATE (:Contact {Id: '1a44eb7a-7cf4-442b-accf-15fb73595012', Type: 'Telegram', Handle: '@den_boyko'});
+CREATE (:Contact {Id: 'ac3e05b0-2528-4034-93dd-306f42b26e3b', Type: 'WhatsApp', Handle: '+380963214785'});
+MATCH (u:User {Id: 'e7639043-e9eb-441f-8704-7f3f3d294734'}), (c1:Contact {Id: '1a44eb7a-7cf4-442b-accf-15fb73595012'}), (c2:Contact {Id: 'ac3e05b0-2528-4034-93dd-306f42b26e3b'})
+CREATE (u)-[:HAS_CONTACT]->(c1)
+CREATE (u)-[:HAS_CONTACT]->(c2);
+
+// User8 - Telegram
+CREATE (:Contact {Id: '38fcae44-8815-4c2d-bc7c-b1a70c049caf', Type: 'Telegram', Handle: '@anna.ver'});
+MATCH (u:User {Id: '1b09a32e-be2b-4c4a-b167-f7914879ea6d'}), (c:Contact {Id: '38fcae44-8815-4c2d-bc7c-b1a70c049caf'})
+CREATE (u)-[:HAS_CONTACT]->(c);
+
+
+//фото - користувач
+MATCH (u:User {Id: '49432202-c001-4ed9-8390-5479f6931285'}), (p:Photo {Id: '873320a8-8dec-48f9-83e8-d5ac2921badf'})
+CREATE (u)-[:UPLOADED]->(p);
+MATCH (u:User {Id: '49432202-c001-4ed9-8390-5479f6931285'}), (p:Photo {Id: '5b735390-dc02-4846-bc57-e0197cbd5046'})
+CREATE (u)-[:UPLOADED]->(p);
+
+MATCH (u:User {Id: '43f3e990-af93-431c-bddd-7ca23406894f'}), (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'})
+CREATE (u)-[:UPLOADED]->(p);
+
+MATCH (u:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d'}), (p:Photo {Id: '57ffb019-09e9-4dd5-8d0a-6ebaf52ee1c0'})
+CREATE (u)-[:UPLOADED]->(p);
+MATCH (u:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d'}), (p:Photo {Id: '3845df6f-6534-4972-8dd6-93b8e2781881'})
+CREATE (u)-[:UPLOADED]->(p);
+
+MATCH (u:User {Id: 'b596d8f6-68ba-49e5-9d6f-e28fbc8781ce'}), (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'})
+CREATE (u)-[:UPLOADED]->(p);
+
+MATCH (u:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e'}), (p:Photo {Id: '2cdeeaa0-9c26-4536-a3d9-4de141089c56'})
+CREATE (u)-[:UPLOADED]->(p);
+MATCH (u:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e'}), (p:Photo {Id: '4d577f62-ac67-4b2f-9703-396d7dd75713'})
+CREATE (u)-[:UPLOADED]->(p);
+
+MATCH (u:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7'}), (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'})
+CREATE (u)-[:UPLOADED]->(p);
+MATCH (u:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7'}), (p:Photo {Id: '3845df6f-6534-4972-8dd6-93b8e2781881'})
+CREATE (u)-[:UPLOADED]->(p);
+MATCH (u:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7'}), (p:Photo {Id: '57ffb019-09e9-4dd5-8d0a-6ebaf52ee1c0'})
+CREATE (u)-[:UPLOADED]->(p);
+
+//коментар - користувач
+MATCH (c:Comment {Id: '1e9becee-b93e-4d16-8c6e-a8675cc0e620'}), (u:User {Id: 'e7639043-e9eb-441f-8704-7f3f3d294734'})
+CREATE (c)-[:BELONGS]->(u);
+MATCH (с:Comment {Id: '684e32e6-0244-4374-a967-2af6a132dfc4'}), (u:User {Id: 'b06260dc-9001-4b91-89c5-e98145853aa7'})
+CREATE (c)-[:BELONGS]->(u);
+MATCH (c:Comment {Id: 'eb28f466-64d8-4bd5-acc2-c525267b1f7c'}), (u:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e'})
+CREATE (c)-[:BELONGS]->(u);
+
+MATCH (c:Comment {Id: '3fab5ab7-c4c5-4972-b7d3-ee5b14a76264'}), (u:User {Id: '1b09a32e-be2b-4c4a-b167-f7914879ea6d'})
+CREATE (c)-[:BELONGS]->(u);
+MATCH (c:Comment {Id: 'a95e8cfb-5ccf-4fe1-ae69-b5e6ce8b2fbd'}), (u:User {Id: 'e7639043-e9eb-441f-8704-7f3f3d294734'})
+CREATE (c)-[:BELONGS]->(u);
+MATCH (c:Comment {Id: '298d7d9f-5052-4e89-80fe-5185f0d360e4'}), (u:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d'})
+CREATE (c)-[:BELONGS]->(u);
+MATCH (c:Comment {Id: '9733902c-255a-4afc-b88d-ad1bf4742e36'}), (u:User {Id: '43f3e990-af93-431c-bddd-7ca23406894f'})
+CREATE (c)-[:BELONGS]->(u);
+
+MATCH (c:Comment {Id: 'ea4530bb-92ba-465a-96e6-04f4c45aab16'}), (u:User {Id: '819570e2-d040-40a9-a132-c1b34c42ee0e'})
+CREATE (c)-[:BELONGS]->(u);
+MATCH (c:Comment {Id: '42a5f28a-fb9f-435b-a4f8-9bcdc38888d1'}), (u:User {Id: '49432202-c001-4ed9-8390-5479f6931285'})
+CREATE (c)-[:BELONGS]->(u);
+
+
+//фото - коментар
+MATCH (p:Photo {Id: '57ffb019-09e9-4dd5-8d0a-6ebaf52ee1c0'}), (c:Comment {Id: '1e9becee-b93e-4d16-8c6e-a8675cc0e620'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+MATCH (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'}), (c:Comment {Id: '684e32e6-0244-4374-a967-2af6a132dfc4'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+MATCH (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'}), (c:Comment {Id: 'eb28f466-64d8-4bd5-acc2-c525267b1f7c'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+
+MATCH (p:Photo {Id: '873320a8-8dec-48f9-83e8-d5ac2921badf'}), (c:Comment {Id: '3fab5ab7-c4c5-4972-b7d3-ee5b14a76264'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+MATCH (p:Photo {Id: '2cdeeaa0-9c26-4536-a3d9-4de141089c56'}), (c:Comment {Id: 'a95e8cfb-5ccf-4fe1-ae69-b5e6ce8b2fbd'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+MATCH (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'}), (c:Comment {Id: '298d7d9f-5052-4e89-80fe-5185f0d360e4'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+MATCH (p:Photo {Id: '5b735390-dc02-4846-bc57-e0197cbd5046'}), (c:Comment {Id: '9733902c-255a-4afc-b88d-ad1bf4742e36'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+
+MATCH (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'}), (c:Comment {Id: 'ea4530bb-92ba-465a-96e6-04f4c45aab16'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+MATCH (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'}), (c:Comment {Id: '42a5f28a-fb9f-435b-a4f8-9bcdc38888d1'})
+CREATE (c)-[:COMMENTED_ON]->(p);
+
+
+//фото - змагання
+MATCH (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'}), (cont:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'})
+CREATE (p)-[:PARTICIPATES_IN]->(cont);
+MATCH (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'}), (cont:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'})
+CREATE (p)-[:PARTICIPATES_IN]->(cont);
+
+MATCH (p:Photo {Id: '3845df6f-6534-4972-8dd6-93b8e2781881'}), (cont:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'})
+CREATE (p)-[:PARTICIPATES_IN]->(cont);
+MATCH (p:Photo {Id: '57ffb019-09e9-4dd5-8d0a-6ebaf52ee1c0'}), (cont:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'})
+CREATE (p)-[:PARTICIPATES_IN]->(cont);
+MATCH (p:Photo {Id: '4d577f62-ac67-4b2f-9703-396d7dd75713'}), (cont:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'})
+CREATE (p)-[:PARTICIPATES_IN]->(cont);
+
+MATCH (p:Photo {Id: '5b735390-dc02-4846-bc57-e0197cbd5046'}), (cont:Contest {Id: 'cdd4f1f9-33cf-4b49-909f-318aab82e189'})
+CREATE (p)-[:PARTICIPATES_IN]->(cont);
+
+//організатор-змагання
+MATCH (u:User {Id: '49432202-c001-4ed9-8390-5479f6931285'}), (cont:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'})
+CREATE (u)-[:HOLDS]->(cont);
+MATCH (u:User {Id: '1b09a32e-be2b-4c4a-b167-f7914879ea6d'}), (cont:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'})
+CREATE (u)-[:HOLDS]->(cont);
+MATCH (u:User {Id: 'f1fb2587-19bb-4a90-a831-f2716707bc6d'}), (cont:Contest {Id: 'cdd4f1f9-33cf-4b49-909f-318aab82e189'})
+CREATE (u)-[:HOLDS]->(cont);
+MATCH (u:User {Id: 'b596d8f6-68ba-49e5-9d6f-e28fbc8781ce'}), (cont:Contest {Id: 'cdd4f1f9-33cf-4b49-909f-318aab82e189'})
+CREATE (u)-[:HOLDS]->(cont);
+
+
+//фото - категорія
+MATCH (p:Photo {Id: '873320a8-8dec-48f9-83e8-d5ac2921badf'}), (cat:Category {Id: '8892399a-acb3-4675-8333-7b78fc3ee8aa'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+MATCH (p:Photo {Id: '873320a8-8dec-48f9-83e8-d5ac2921badf'}), (cat:Category {Id: 'cc3e051b-dcf7-49b0-88b0-b8c7a9cc2f8f'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+MATCH (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'}), (cat:Category {Id: '72514169-8ef9-4b0e-92c4-d49bc63b5eff'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+MATCH (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'}), (cat:Category {Id: 'f7cf672a-9199-4c9d-892c-466dcd717f0c'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+MATCH (p:Photo {Id: 'c97ec089-8be1-423e-811c-a4991eda5c45'}), (cat:Category {Id: 'aeba67ea-3771-4a1e-899a-60395c41c919'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+MATCH (p:Photo {Id: 'fd364cba-d130-44d2-be5e-771fc69e3046'}), (cat:Category {Id: 'aeba67ea-3771-4a1e-899a-60395c41c919'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+MATCH (p:Photo {Id: '57ffb019-09e9-4dd5-8d0a-6ebaf52ee1c0'}), (cat:Category {Id: '72514169-8ef9-4b0e-92c4-d49bc63b5eff'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+MATCH (p:Photo {Id: '4d577f62-ac67-4b2f-9703-396d7dd75713'}), (cat:Category {Id: '8892399a-acb3-4675-8333-7b78fc3ee8aa'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+MATCH (p:Photo {Id: '4d577f62-ac67-4b2f-9703-396d7dd75713'}), (cat:Category {Id: 'cc3e051b-dcf7-49b0-88b0-b8c7a9cc2f8f'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+MATCH (p:Photo {Id: '4d577f62-ac67-4b2f-9703-396d7dd75713'}), (cat:Category {Id: 'f7cf672a-9199-4c9d-892c-466dcd717f0c'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+MATCH (p:Photo {Id: '5b735390-dc02-4846-bc57-e0197cbd5046'}), (cat:Category {Id: 'aeba67ea-3771-4a1e-899a-60395c41c919'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+MATCH (p:Photo {Id: '5b735390-dc02-4846-bc57-e0197cbd5046'}), (cat:Category {Id: '72514169-8ef9-4b0e-92c4-d49bc63b5eff'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+MATCH (p:Photo {Id: 'ec26935f-dcb4-4725-819f-f6ef9fc14033'}), (cat:Category {Id: '72514169-8ef9-4b0e-92c4-d49bc63b5eff'})
+CREATE (p)-[:IN_CATEGORY]->(cat);
+
+
+//Конкурси - Категорії
+MATCH (c:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'}), (cat:Category {Id: '8892399a-acb3-4675-8333-7b78fc3ee8aa'})
+CREATE (c)-[:ACCEPTS]->(cat);
+MATCH (c:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'}), (cat:Category {Id: 'aeba67ea-3771-4a1e-899a-60395c41c919'})
+CREATE (c)-[:ACCEPTS]->(cat);
+MATCH (c:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'}), (cat:Category {Id: 'cc3e051b-dcf7-49b0-88b0-b8c7a9cc2f8f'})
+CREATE (c)-[:ACCEPTS]->(cat);
+
+MATCH (c:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'}), (cat:Category {Id: 'aeba67ea-3771-4a1e-899a-60395c41c919'})
+CREATE (c)-[:ACCEPTS]->(cat);
+MATCH (c:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'}), (cat:Category {Id: 'f7cf672a-9199-4c9d-892c-466dcd717f0c'})
+CREATE (c)-[:ACCEPTS]->(cat);
+MATCH (c:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'}), (cat:Category {Id: 'cc3e051b-dcf7-49b0-88b0-b8c7a9cc2f8f'})
+CREATE (c)-[:ACCEPTS]->(cat);
+//У третього нема обмежень, відповідно приймає все що завгодно
+
+//Конкурси - Нагороди
+MATCH (c:Contest {Id: '07db8086-481f-4cb0-bde2-30df648a7230'}), (aw:Award {Id: 'e5d56202-2517-4a0e-b21c-1f3967286cec'})
+CREATE (c)-[:AWARDS]->(aw);
+MATCH (c:Contest {Id: '6b61fb0d-ae68-4549-9660-34802301ff17'}), (aw:Award {Id: '5ea28a52-e793-4e06-9be4-4002585f0e34'})
+CREATE (c)-[:AWARDS]->(aw);
+MATCH (c:Contest {Id: 'cdd4f1f9-33cf-4b49-909f-318aab82e189'}), (aw:Award {Id: '94d79123-6ccb-4857-80c1-41524e8a66ca'})
+CREATE (c)-[:AWARDS]->(aw);
+MATCH (c:Contest {Id: 'cdd4f1f9-33cf-4b49-909f-318aab82e189'}), (aw:Award {Id: 'b2193064-1d5b-4e41-b83b-cd6f9153ad41'})
+CREATE (c)-[:AWARDS]->(aw);
+
+//Фото - Нагороди
+MATCH (p:Photo {Id: '3845df6f-6534-4972-8dd6-93b8e2781881'}), (aw:Award {Id: '5ea28a52-e793-4e06-9be4-4002585f0e34'})
+CREATE (p)<-[:AWARDED]-(aw);
+
+MATCH (p:Photo {Id: '5b735390-dc02-4846-bc57-e0197cbd5046'}), (aw:Award {Id: '94d79123-6ccb-4857-80c1-41524e8a66ca'})
+CREATE (p)<-[:AWARDED]-(aw);
+MATCH (p:Photo {Id: '3845df6f-6534-4972-8dd6-93b8e2781881'}), (aw:Award {Id: 'b2193064-1d5b-4e41-b83b-cd6f9153ad41'})
+CREATE (p)<-[:AWARDED]-(aw);

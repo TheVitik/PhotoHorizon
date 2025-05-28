@@ -2,43 +2,73 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Vinelab\NeoEloquent\Eloquent\Model;
+use Vinelab\NeoEloquent\Eloquent\Relations\BelongsToMany;
+use Vinelab\NeoEloquent\Eloquent\Relations\HasMany;
+use Vinelab\NeoEloquent\Eloquent\Relations\HasOne;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $connection = 'neo4j';
+
+    protected $label = 'User';
+
+    protected $dateFormat = 'Y-m-d\TH:i:s';
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+      'Id',
+      'Name',
+      'AvatarPath',
+      'PasswordHash',
+      'Email',
+      'RegisteredAt',
+      'Bio'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $dates = ['RegisteredAt'];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function scopeFindUuid($query, $uuid)
+    {
+        return $query->where('Id', $uuid)->first();
+    }
+
+    // Relationships
+    public function photos(): HasMany
+    {
+        return $this->hasMany(Photo::class, 'UPLOADED');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'BELONGS');
+    }
+
+    public function contests(): HasMany
+    {
+        return $this->hasMany(Contest::class, 'HOLDS');
+    }
+
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class, 'HAS_CONTACT');
+    }
+
+    public function city(): HasOne
+    {
+        return $this->hasOne(City::class, 'LIVE');
+    }
+
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'FOLLOWS', 'FOLLOWED_BY', 'FOLLOWS');
+    }
+
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'FOLLOWS', 'FOLLOWS', 'FOLLOWED_BY');
+    }
+
 }

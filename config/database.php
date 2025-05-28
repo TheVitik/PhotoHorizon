@@ -43,6 +43,14 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+          'neo4j' => [
+            'driver' => 'neo4j',
+            'host'   => env('NEO4J_HOST', 'localhost'),
+            'port'   => env('NEO4J_PORT', 7687),
+            'username' => env('NEO4J_USERNAME', 'neo4j'),
+            'password' => env('NEO4J_PASSWORD', '11111111'),
+          ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),

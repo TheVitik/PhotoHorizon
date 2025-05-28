@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (config('database.default') === 'neo4j') {
+            $this->app['db']->setDefaultConnection('neo4j');
+        }
     }
 }
