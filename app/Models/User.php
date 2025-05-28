@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Vinelab\NeoEloquent\Eloquent\Model;
 use Vinelab\NeoEloquent\Eloquent\Relations\BelongsToMany;
@@ -10,6 +12,7 @@ use Vinelab\NeoEloquent\Eloquent\Relations\HasOne;
 
 class User extends Model
 {
+
     use HasApiTokens;
 
     protected $connection = 'neo4j';
@@ -25,7 +28,7 @@ class User extends Model
       'PasswordHash',
       'Email',
       'RegisteredAt',
-      'Bio'
+      'Bio',
     ];
 
     protected $dates = ['RegisteredAt'];
@@ -63,12 +66,43 @@ class User extends Model
 
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'FOLLOWS', 'FOLLOWED_BY', 'FOLLOWS');
+        return $this->belongsToMany(User::class, 'FOLLOWS');
     }
 
-    public function following(): BelongsToMany
+    public function following(): Collection
     {
-        return $this->belongsToMany(User::class, 'FOLLOWS', 'FOLLOWS', 'FOLLOWED_BY');
+        $results = DB::connection('neo4j')->select(
+          "MATCH (user:User {Id: '$this->Id'})-[:FOLLOWS]->(user2:User) RETURN user2",
+        );
+
+        return collect($results->toArray())->map(function ($row) {
+            return new User($row->get('user2')->properties()->toArray());
+        });
+    }
+
+    public function follow(User $user)
+    {
+        $result = DB::connection('neo4j')->select(
+          "MATCH (user:User {Id: '$this->Id'})-[r:FOLLOWS]->(user2:User {Id: '$user->Id'}) RETURN count(r) > 0 AS exists;",
+        );
+
+        $exists = false;
+        if (!empty($result) && isset($result[0]['exists'])) {
+            $exists = (bool) $result[0]['exists'];
+        }
+
+        if(!$exists){
+            DB::connection('neo4j')->select(
+              "MATCH (user:User {Id: '$this->Id'}), (user2:User {Id: '$user->Id'}) MERGE (user)-[:FOLLOWS]->(user2)",
+            );
+        }
+    }
+
+    public function unfollow(User $user)
+    {
+        DB::connection('neo4j')->select(
+          "MATCH (user:User {Id: '$this->Id'})-[r:FOLLOWS]->(user2:User {Id: '$user->Id'}) DELETE r",
+        );
     }
 
 }

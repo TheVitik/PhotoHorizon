@@ -142,9 +142,7 @@ class UserController extends Controller
         }
 
         // Створити зв'язок, якщо його немає
-        if (!$currentUser->following()->where('Id', $toFollow->Id)->exists()) {
-            $currentUser->following()->attach($toFollow->Id);
-        }
+        $currentUser->follow($toFollow);
 
         return response()->json([
           'success' => true, 'message' => 'Підписка додана',
@@ -165,7 +163,7 @@ class UserController extends Controller
         }
 
         // Видалити зв'язок, якщо існує
-        $currentUser->following()->detach($toUnfollow->Id);
+        $currentUser->unfollow($toUnfollow);
 
         return response()->json([
           'success' => true, 'message' => 'Підписка видалена',
@@ -184,7 +182,7 @@ class UserController extends Controller
 
         $followers = $user->followers()->get();
 
-        return response()->json(['success' => true, 'data' => $followers]);
+        return response()->json(['success' => true, 'data' => UserResource::collection($followers)]);
     }
 
     public function getFollowing(Request $request, $id): JsonResponse
@@ -197,9 +195,9 @@ class UserController extends Controller
             ], 404);
         }
 
-        $following = $user->following()->get();
+        $following = $user->following();
 
-        return response()->json(['success' => true, 'data' => $following]);
+        return response()->json(['success' => true, 'data' => UserResource::collection($following)]);
     }
 
 }

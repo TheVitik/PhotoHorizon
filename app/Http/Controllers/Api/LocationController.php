@@ -23,15 +23,14 @@ class LocationController extends Controller
     public function getCountries(Request $request): JsonResponse
     {
         try {
-            $query = Country::with(['regions.cities']);
+            $countries = Country::with(['regions.cities'])->get();
 
-            // Пошук по назві
             if ($request->has('search')) {
-                $search = $request->get('search');
-                $query->where('Name', 'CONTAINS', $search);
+                $search = mb_strtolower($request->get('search'));
+                $countries = $countries->filter(function ($country) use ($search) {
+                    return mb_stripos($country->Name, $search) !== false;
+                });
             }
-
-            $countries = $query->get();
 
             return response()->json([
               'success' => true,
@@ -126,30 +125,32 @@ class LocationController extends Controller
                 ], 404);
             }
 
-            $query = $city->users();
+            $users = $city->users;
 
-            // Фільтрація користувачів
+            // Фільтрація активних користувачів (ті, що мають фото або брали участь у конкурсах)
             if ($request->has('active_only')) {
-                // Припускаємо, що активні користувачі мають фото або брали участь у конкурсах
-                $query->where(function ($q) {
-                    $q->has('photos')->orHas('contests');
+                $users = $users->filter(function ($user) {
+                    return $user->photos->isNotEmpty() || $user->contests->isNotEmpty();
                 });
             }
 
-            // Пошук по імені
+            // Пошук по імені (case-insensitive)
             if ($request->has('search')) {
-                $search = $request->get('search');
-                $query->where('Name', 'CONTAINS', $search);
+                $search = mb_strtolower($request->get('search'));
+                $users = $users->filter(function ($user) use ($search) {
+                    return mb_stripos($user->Name, $search) !== false;
+                });
             }
 
-            // Сортування
+            // Сортування (за замовчуванням по 'Name' ASC)
             $sortBy = $request->get('sort_by', 'Name');
-            $sortOrder = $request->get('sort_order', 'asc');
-            $query->orderBy($sortBy, $sortOrder);
+            $sortOrder = strtolower($request->get('sort_order', 'asc'));
 
-            // TODO: Sort by Likes
+            $users = $users->sortBy(function ($user) use ($sortBy) {
+                return $user->{$sortBy} ?? '';
+            }, SORT_REGULAR, $sortOrder === 'desc');
 
-            $users = $query->get();
+            $users = $users->values();
 
             return response()->json([
               'success' => true,
@@ -190,34 +191,35 @@ class LocationController extends Controller
 
             $cityIds = $cityIds->unique()->all();
 
-            //$cityIds = ['ca678c9e-d478-4d6e-a07d-05fba58e24b2'];
-
-            $query = User::query()->whereHas('city',function ($query) use ($cityIds) {
+            $users = User::with(['photos', 'contests', 'city'])->whereHas('city',function ($query) use ($cityIds) {
                 $query->whereIn('Id', $cityIds);
-            });
+            })->get();
 
             // Фільтрація користувачів
             if ($request->has('active_only')) {
                 // Припускаємо, що активні користувачі мають фото або брали участь у конкурсах
-                $query->where(function ($q) {
-                    $q->has('photos')->orHas('contests');
+                $users = $users->filter(function ($user) {
+                    return $user->photos->isNotEmpty() || $user->contests->isNotEmpty();
                 });
             }
 
             // Пошук по імені
             if ($request->has('search')) {
-                $search = $request->get('search');
-                $query->where('Name', 'CONTAINS', $search);
+                $search = mb_strtolower($request->get('search'));
+                $users = $users->filter(function ($user) use ($search) {
+                    return mb_stripos($user->Name, $search) !== false;
+                });
             }
 
             // Сортування
             $sortBy = $request->get('sort_by', 'Name');
-            $sortOrder = $request->get('sort_order', 'asc');
-            $query->orderBy($sortBy, $sortOrder);
+            $sortOrder = strtolower($request->get('sort_order', 'asc'));
 
-            // TODO: Sort by Likes
+            $users = $users->sortBy(function ($user) use ($sortBy) {
+                return $user->{$sortBy} ?? '';
+            }, SORT_REGULAR, $sortOrder === 'desc');
 
-            $users = $query->get();
+            $users = $users->values();
 
             return response()->json([
               'success' => true,

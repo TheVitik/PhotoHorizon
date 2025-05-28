@@ -247,14 +247,14 @@ class PhotoController extends Controller
             ], 422);
         }
 
-        $photo->likes_count += 1;
+        $photo->LikesCount += 1;
         $photo->save();
 
         Cache::put($key, true, now()->addMinutes(1440));
 
         return response()->json([
           'success' => true,
-          'data' => ['likes_count' => $photo->likes_count],
+          'data' => ['likes_count' => $photo->LikesCount],
           'message' => 'Лайк додано',
         ]);
     }
@@ -283,14 +283,14 @@ class PhotoController extends Controller
             ], 422);
         }
 
-        $photo->likes_count -= 1;
+        $photo->LikesCount -= 1;
         $photo->save();
 
         Cache::put($key, false, now()->addMinutes(1440));
 
         return response()->json([
           'success' => true,
-          'data' => ['likes_count' => $photo->likes_count],
+          'data' => ['likes_count' => $photo->LikesCount],
           'message' => 'Дизлайк додано',
         ]);
     }

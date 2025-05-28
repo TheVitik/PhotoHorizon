@@ -20,8 +20,6 @@ class ProfileController
         $user = User::with([
           'contacts',
           'city',
-          'followers',
-          'following',
         ])->findUuid($authUser->id);
 
         if (!$user) {

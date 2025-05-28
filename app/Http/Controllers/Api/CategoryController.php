@@ -17,15 +17,15 @@ class CategoryController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $query = Category::query();
+            $categories = Category::all();
 
-            // Пошук по назві
             if ($request->has('search')) {
-                $search = $request->get('search');
-                $query->where('Name', 'CONTAINS', $search);
-            }
+                $search = mb_strtolower($request->get('search'));
 
-            $categories = $query->get();
+                $categories = $categories->filter(function ($category) use ($search) {
+                    return str_contains(mb_strtolower($category->Name), $search);
+                })->values();
+            }
 
             return response()->json([
               'success' => true,
@@ -56,14 +56,20 @@ class CategoryController extends Controller
                 ], 404);
             }
 
-            $query = $category->photos()->with(['user']);
+            $photos = $category->photos()->with(['user'])->get();
 
-            // Сортування
             $sortBy = $request->get('sort_by', 'CreationDate');
-            $sortOrder = $request->get('sort_order', 'desc');
-            $query->orderBy($sortBy, $sortOrder);
+            $sortOrder = strtolower($request->get('sort_order', 'desc'));
 
-            $photos = $query->get();
+            if ($sortOrder === 'asc') {
+                $photos = $photos->sortBy(function ($photo) use ($sortBy) {
+                    return $photo->$sortBy;
+                })->values();
+            } else {
+                $photos = $photos->sortByDesc(function ($photo) use ($sortBy) {
+                    return $photo->$sortBy;
+                })->values();
+            }
 
             return response()->json([
               'success' => true,

@@ -22,6 +22,7 @@ class UserResource extends JsonResource
           'bio' => $this->Bio,
           'registered_at' => $this->RegisteredAt ? (string) $this->RegisteredAt : null,
 
+          'followers' => UserCommentResource::collection($this->whenLoaded('followers')),
           'photos' => PhotoResource::collection($this->whenLoaded('photos')),
           'comments' => CommentResource::collection($this->whenLoaded('comments')),
           'contests' => ContestResource::collection($this->whenLoaded('contests')),
